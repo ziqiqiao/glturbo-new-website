@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>GL-TURBO - Contact GL-TURBO</title>
+<link href="../../images/GL-favicon_32.png" rel="SHORTCUT ICON" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Gl Turbo - Contact GL-TURBO">
+ <meta name="author" content="GL-TURBO">
+ <meta name="keywords" content="GL-TURBO,GL,TURBO,Wuxi,Jiangsu,Single-Stage,Centrifugal,Compressor,Blower,IGV,VVD,HV,Clean Tech,Clean,Efficient,Environment,Water,Wastewater">
+</head>
+
+<style>
+  .names {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+  }
+  
+  /* Tooltip CSS */
+  .d3-tip {
+    line-height: 1.5;
+    font-weight: 400;
+    font-family:"avenir next", Arial, sans-serif;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFA500;
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {      
+    box-sizing: border-box;
+    display: inline;
+    font-size: 8px;
+    width: 100%;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    pointer-events: none;
+    
+  }
+
+  /* Northward tooltips */
+  .d3-tip.n:after {
+    content: "\25BC";
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+    text-align: center;
+  }
+
+  /* Eastward tooltips */
+  .d3-tip.e:after {
+    content: "\25C0";
+    margin: -4px 0 0 0;
+    top: 50%;
+    left: -8px;
+  }
+
+  /* Southward tooltips */
+  .d3-tip.s:after {
+    content: "\25B2";
+    margin: 0 0 1px 0;
+    top: -8px;
+    left: 0;
+    text-align: center;
+  }
+
+  /* Westward tooltips */
+  .d3-tip.w:after {
+    content: "\25B6";
+    margin: -4px 0 0 -1px;
+    top: 50%;
+    left: 100%;
+  }
+
+  /*    
+  text{
+    pointer-events:none;
+  }
+  */
+
+  .details{
+    color: white;
+  }
+
+  #space{
+ 	
+ 	right: 0; 
+ 	left: -30px; 
+ 	bottom: 0;
+ 	z-index: 1030;
+ 	margin-bottom: 0; 
+ 	border-width: 1px 0 0;
+ 	
+    }
+  .span8{
+  	margin-top:8vw;
+  	padding-left:15vw;
+  }
+   #main{
+      margin-top:8vw;
+      background: #ffffff none repeat scroll 0 0;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      font: 13px Arial,Helvetica,sans-serif;
+      margin-left:10vw;
+      margin-right:5vw;
+     // margin: 3% auto;
+      width: 80vw;
+      height: 55vw;
+   }
+  #label2{
+    background: rgba(135,180,230,0.7);
+    padding-left: 15px;
+    width: 15px;
+    border-radius: 2px;
+ 
+  }
+   .space{
+    padding-left: 1vw;
+    background-color: white;
+  }
+   #legend{
+    display: block;
+    padding-right: 2px;
+    border: none;
+    width: 20%;
+    margin-top: 36%;
+    position: absolute;
+    float: left;
+   }
+   .heading{
+    padding-top:1vw;
+    font-size:1.5vw;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    margin-bottom: 1vw;
+    padding-bottom: 3px;
+    width:40%;
+    position:relative;
+   }
+   #contact{
+    margin-top:90px;
+   }
+   .second{
+   font-size:1vw;
+   font-weight: bold;
+   }
+   ul{
+   font-size: 1vw;
+   }
+
+</style>
+
+<body>
+
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
+<script src="d3-tip.js"></script>
+<script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<!-- Navs Styles -->
+<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap-responsive.css" />
+<script type="text/javascript" src="../../ScriptLibrary/jquery-latest.pack.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" integrity="sha256-HS1ihgXZ6qfUcS5BTehJhV81EZR+I5Q6zx5yGdEqbp0=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/js/bootstrap-dialog.min.js"></script>
+<link href="../../css/override.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../fontawesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../css/ajxmenu.css" type="text/css">
+<script src="../../css/ajxmenu.js" type="text/javascript"></script>
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+		<div class="navbar navbar-default navbar-fixed-top">
+          <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+       <a class="brand" href="../../index.php"><img src="../../images/GLTURBO-logoBlue.png" width="230" alt=""/></a>
+            <div class="nav-collapse collapse">
+              <ul class="nav"><li><a href="../../index.php"><!--Home--><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li><li class="dropdown"><a href="#about" class="dropdown-toggle" data-toggle="dropdown">About Us<strong class="caret"></strong></a>
+                  <ul class="dropdown-menu">
+                        <li><a href="../../about_us.php?pg=company">Company </a></li>
+                        <li><a href="../../about_us.php?pg=why_gl_turbo">Why GL-TURBO</a></li>
+                        <li><a href="../../about_us.php?pg=news">News</a></li>
+                        <li><a href="../../about_us.php?pg=events">Events</a></li>
+                        <li><a href="../../about_us.php?pg=careers">Careers</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a href="#products" class="dropdown-toggle" data-toggle="dropdown">Products <strong class="caret"></strong></a>
+                  <ul class="dropdown-menu">
+                        <li><a href="../../products.php?pg=gl_gt">GL - Geared Turbo</a></li>
+                        <li><a href="../../products.php?pg=ls_mst">LS - Multistage Turbo</a></li>
+                        <li><a href="../../products.php?pg=contr_sys">CS - Control Systems</a></li>
+                        <li><a href="../../products.php?pg=pack_systems">PS - Packaged Systems</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a href="#applications" class="dropdown-toggle" data-toggle="dropdown">Applications <strong class="caret"></strong></a>
+                  <ul class="dropdown-menu">
+                        <li><a href="../../applications.php?pg=wnw">Water &amp; Wastewater</a></li>
+                        <li><a href="../../applications.php?pg=vac_sys">Vacuum Systems</a></li>
+                        <li><a href="../../applications.php?pg=petro_chemical">Petro-Chemical</a></li>
+                        <li><a href="../../applications.php?pg=power">Power</a></li>
+                        <li><a href="../../applications.php?pg=mining">Mining</a></li>
+                        <li><a href="../../applications.php?pg=environmental">Environmental</a></li>
+                        <li><a href="../../applications.php?pg=industrial">Industrial</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a href="#resources" class="dropdown-toggle" data-toggle="dropdown">Resources<strong class="caret"></strong></a>
+                  <ul class="dropdown-menu">
+                        <li><a href="../../resources_and_downloads.php?pg=prod_data_sheets">Product Data Sheets</a></li>
+                   
+                        
+                  </ul>
+                </li>
+           
+                <li class="dropdown"><a href="#contact" class="dropdown-toggle" data-toggle="dropdown">Contact Us<strong class="caret"></strong></a>
+                  <ul class="dropdown-menu">
+                	<li><a href="../../contact.php?pg=contact_us">Contact us</a>
+                	<li><a href="map.php?pg=map">Global Reps</a></li>
+                  </ul>
+              </ul>
+				<div class="dsearch pull-right"><a href="http://www.glturbo.com.cn/chinese/default.asp" target="_blank">Chinese</a> <!-- >| <a href="#search"><i class="fa fa-search"></i></a --></div> 
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+
+
+
+<div id="main">
+  <fieldset  id="legend">
+    <ul><span id ="label2"></span><span class="space"></span><span class="word"><strong>GL-TURBO Global Reps</strong></span></ul>
+</fieldset>
+    
+    <ul class="heading">
+      Global Representatives
+    </ul>
+      <ul>Click on the map to find our authorized representatives around the world.</ul>
+    <ul class="second"><a href="contact.php?pg=contact_us">Contact Us</a> today!</ul>
+      
+</div>
+<script >
+// configuration
+var ForbidCountry = ['Iran', 'Cuba'];
+const format = d3.format(',');
+
+// Store the agency country and company
+var phpCountry = [{"COL 1":"Americas"},{"COL 1":"Antigua and Barbuda"},{"COL 1":"Argentina"},{"COL 1":"Australia"},{"COL 1":"Austria"},{"COL 1":"Bahamas"},{"COL 1":"Bahrain"},{"COL 1":"Barbados"},{"COL 1":"Belaruss"},{"COL 1":"Belize"},{"COL 1":"Bolivia"},{"COL 1":"Brazil"},{"COL 1":"Bulgaria"},{"COL 1":"Canada"},{"COL 1":"Chile"},{"COL 1":"China"},{"COL 1":"Colombia"},{"COL 1":"Costa Rica"},{"COL 1":"Cyprus"},{"COL 1":"Denmark"},{"COL 1":"Dominica"},{"COL 1":"Dominican Republic"},{"COL 1":"Ecuador"},{"COL 1":"Egypt"},{"COL 1":"El Salvador"},{"COL 1":"Estonia"},{"COL 1":"Finland"},{"COL 1":"France"},{"COL 1":"Germany"},{"COL 1":"Greece"},{"COL 1":"Grenada"},{"COL 1":"Guatemala"},{"COL 1":"Guyana"},{"COL 1":"Haiti"},{"COL 1":"Honduras"},{"COL 1":"Hong Kong"},{"COL 1":"India"},{"COL 1":"Ireland"},{"COL 1":"Israel"},{"COL 1":"Italy"},{"COL 1":"Jamaica"},{"COL 1":"Jordan"},{"COL 1":"Kazakhstan"},{"COL 1":"Latvia"},{"COL 1":"Lithuania"},{"COL 1":"Malaysia"},{"COL 1":"Mexico"},{"COL 1":"Nicaragua"},{"COL 1":"Norge"},{"COL 1":"Oman"},{"COL 1":"Panama"},{"COL 1":"Paraguay"},{"COL 1":"Peru"},{"COL 1":"Philippines"},{"COL 1":"Poland"},{"COL 1":"Portugal"},{"COL 1":"Qatar"},{"COL 1":"Romania*"},{"COL 1":"Russia"},{"COL 1":"Saint Kitts and Nevis"},{"COL 1":"Saint Lucia"},{"COL 1":"Saint Vincent and the Grenadines"},{"COL 1":"Saudi Arabia"},{"COL 1":"Singapore"},{"COL 1":"South Africa"},{"COL 1":"Spain"},{"COL 1":"Sweden"},{"COL 1":"Switzerland"},{"COL 1":"Taiwan"},{"COL 1":"Thailand"},{"COL 1":"Trinidad and Tobago"},{"COL 1":"Turkey"},{"COL 1":"United Arab Emirates"},{"COL 1":"United Kingdom"},{"COL 1":"United States of America"},{"COL 1":"Uruguay"},{"COL 1":"Venezuela"},{"COL 1":"Vietnam"}];
+var phpCompany = [{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"CAPS"},{"COL 5":"German Pneumatics Engineering"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"TPS"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Hidora"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Michos"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Jiangsu GL-TURBO Corp."},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Michos"},{"COL 5":"GL-TURBO International"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Scientech"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Hidora"},{"COL 5":"Flootech"},{"COL 5":"Jantoon Reyers"},{"COL 5":"GL-TURBO Europe"},{"COL 5":"Michos"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Ascentic Ltd"},{"COL 5":"GL-TURBO India"},{"COL 5":"Centriforce"},{"COL 5":"Balass Brothers"},{"COL 5":"WA.S.T.E"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Modern Industrial Services"},{"COL 5":"L-start"},{"COL 5":"Hidora"},{"COL 5":"Hidora"},{"COL 5":"Airofluid "},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO International"},{"COL 5":"Muscat Overseas Oilfield Supplies CO. LC"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"Uni-Alliance Consultants and Services"},{"COL 5":"DWE Polska"},{"COL 5":"Iberospec"},{"COL 5":"Water Treatment Systems"},{"COL 5":"S.C. Waterengineering"},{"COL 5":"L-Start"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"TPS"},{"COL 5":"Diagnostic Engineering Services"},{"COL 5":"PHC Projects"},{"COL 5":"Iberospec"},{"COL 5":"GL-TURBO International"},{"COL 5":"German Pneumatics Engineering"},{"COL 5":"Phamland"},{"COL 5":"Power Air System"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"AQUA PROSES"},{"COL 5":"Enceladus General Trading L.L.C."},{"COL 5":"Centriforce"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"GL-TURBO Houston"},{"COL 5":"WSC"}];
+
+d3.select(window)
+        .on("resize", sizeChange);
+
+// Set tooltips
+const tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    if (d.Company)
+              { 
+                    return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Company: </strong><span class='details'>" + d.Company +"</span>";
+              }
+              else
+              {
+                
+                if (ForbidCountry.indexOf(d.properties.name)==-1){
+                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>"+ "<strong>Company: </strong><span class='details'> GL-TURBO International"  +"</span>"
+              }
+                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>";
+              }
+      })
+tip.direction(function(d) {
+  if (d.properties.name === 'Antarctica') return 'n';
+  // Americas
+  if (d.properties.name === 'Greenland') return 's';
+  if (d.properties.name === 'Canada') return 'e';
+  if (d.properties.name === 'USA') return 'e';
+  if (d.properties.name === 'Mexico') return 'e';
+  // Europe
+  if (d.properties.name === 'Iceland') return 's';
+  if (d.properties.name === 'Norway') return 's';
+  if (d.properties.name === 'Sweden') return 's';
+  if (d.properties.name === 'Finland') return 's';
+  if (d.properties.name === 'Russia') return 'w';
+  // Asia
+  if (d.properties.name === 'China') return 'w';
+  if (d.properties.name === 'Japan') return 's';
+  // Oceania
+  if (d.properties.name === 'Indonesia') return 'w';
+  if (d.properties.name === 'Papua New Guinea') return 'w';
+  if (d.properties.name === 'Australia') return 'w';
+  if (d.properties.name === 'New Zealand') return 'w';
+  // otherwise if not specified
+  return 'n';
+})
+
+tip.offset(function(d) { // [top, left]
+  if (d.properties.name === 'Antarctica') return [0, 0];
+  // Americas
+  if (d.properties.name === 'Greenland') return [10, -10];
+  if (d.properties.name === 'Canada') return [24, -28];
+  if (d.properties.name === 'USA') return [-5, 8];
+  if (d.properties.name === 'Mexico') return [12, 10];
+  if (d.properties.name === 'Chile') return [0, -15];
+  // Europe
+  if (d.properties.name === 'Iceland') return [15, 0];
+  if (d.properties.name === 'Norway') return [10, -28];
+  if (d.properties.name === 'Sweden') return [10, -8];
+  if (d.properties.name === 'Finland') return [10, 0];
+  if (d.properties.name === 'France') return [-9, 66];
+  if (d.properties.name === 'Italy') return [-8, -6];
+  if (d.properties.name === 'Russia') return [5, 385];
+  // Africa
+  if (d.properties.name === 'Madagascar') return [-10, 10];
+  // Asia
+  if (d.properties.name === 'China') return [-16, -8];
+  if (d.properties.name === 'Mongolia') return [-5, 0];
+  if (d.properties.name === 'Pakistan') return [-10, 13];
+  if (d.properties.name === 'India') return [-11, -18];
+  if (d.properties.name === 'Nepal') return [-8, 1];
+  if (d.properties.name === 'Myanmar') return [-12, 0];
+  if (d.properties.name === 'Laos') return [-12, -8];
+  if (d.properties.name === 'Vietnam') return [-12, -4];
+  if (d.properties.name === 'Japan') return [5, 5];
+  // Oceania
+  if (d.properties.name === 'Indonesia') return [0, -5];
+  if (d.properties.name === 'Papua New Guinea') return [-5, -10];
+  if (d.properties.name === 'Australia') return [-15, 0];
+  if (d.properties.name === 'New Zealand') return [-15, 0];
+  // otherwise if not specified
+  return [-10, 0];
+})
+
+
+
+var selectedcolor = d3.scaleThreshold()
+    .range(["rgba(135,180,230,0.7)"]);
+
+var defaultcolor = d3.scaleThreshold()
+    .range(["rgba(170,170,170,0.7)"]);
+
+var highlightcolor = d3.scaleThreshold()
+    .range(["rgba(63, 127, 191, 1)"]);
+
+
+
+  function sizeChange() {
+      d3.select("g").attr("transform", "scale(" + $("#main").width()/w + ")");
+  }
+const w = $("#main").width();
+var svg = d3.select('#main')
+  .append('svg')
+  .attr('width', "100%")
+  .attr('height', "80%")
+  .append('g')
+  .attr('class', 'map');
+
+var projection = d3.geoRobinson()
+  .scale($("#main").width()/7)
+  .rotate([352, 0, 0])
+  .translate( [$("#main").width() / 2.3, $("#main").height() / 2.5])
+
+var path = d3.geoPath().projection(projection);
+
+svg.call(tip);
+
+queue()
+  .defer(d3.json, "https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/world-countries.json")
+  .await(ready);
+
+function ready(error,data) {
+   var companyByCountry = {};
+  for (var i = 0; i<phpCompany.length; i++){
+         companyByCountry[phpCountry[i]['COL 1']] = phpCompany[i]['COL 5']
+    }
+  data.features.forEach(function(d) {
+    if (companyByCountry[d.properties.name])  {
+       d.Company = companyByCountry[d.properties.name];
+    }
+  });
+  // calculate ckmeans clusters
+  // then use the max value of each cluster
+  // as a break
+  // const numberOfClasses = color.range().length - 1;
+  const ckmeansClusters = ss.ckmeans(phpCompany.map(d => d.Company), companyByCountry);
+  const ckmeansBreaks = ckmeansClusters.map(d => d3.min(d));
+  // console.log('companyByCountry', companyByCountry);
+  // console.log('ckmeansClusters', ckmeansClusters);
+  // console.log('ckmeansBreaks', ckmeansBreaks);
+
+  // set the domain of the color scale based on our data
+  // color
+  //   .domain(ckmeansBreaks);
+  //
+  // .domain(jenksNaturalBreaks)
+  //
+  // .domain(d3.extent(data, d => d[colorVariable]));
+  //
+  // .domain([
+  //   10000,
+  //   100000,
+  //   500000,
+  //   1000000,
+  //   5000000,
+  //   10000000,
+  //   50000000,
+  //   100000000,
+  //   500000000,
+  //   1500000000
+  // ]);
+
+  svg.append('g')
+    .attr('class', 'countries')
+    .selectAll('path')
+    .data(data.features)
+    .enter().append('path')
+      .attr('d', path)
+      .style('fill', d => {
+      if (ForbidCountry.indexOf(d.properties.name)==-1){
+         return selectedcolor([d.Company]);
+      }
+      else {
+         return defaultcolor([d.Company]);
+      }
+//       if (d.Company)   {
+//              return selectedcolor([d.Company]); 
+//      }
+//        else {return defaultcolor([d.Company]);}
+      })
+      .style('fill-opacity',0.8)
+      .style('stroke', d => {
+          if (d.Company !== 0) {
+          return 'white';
+        } 
+        return 'lightgray';
+      })
+      .style('stroke-width', 1)
+      .style('stroke-opacity', 0.5)
+      // tooltips
+      .on('mouseover',function(d){
+        tip.show(d);
+        d3.select(this)
+          .style('fill-opacity', 1)
+          .style('stroke-opacity', 1)
+          .style('stroke-width', 2)
+      })
+      .on('mouseout', function(d){
+        tip.hide(d);
+        d3.select(this)
+          .style('fill-opacity', 0.8)
+          .style('stroke-opacity', 0.5)
+          .style('stroke-width', 1)
+      });
+
+  svg.append('path')
+    .datum(topojson.mesh(data.features, (a, b) => a.id !== b.id))
+    .attr('class', 'names')
+    .attr('d', path);
+}
+
+
+
+    </script>
+</div>
+<!-- FOOTER -->
+
+	<div id = 'space'>
+	    <footer>
+		  <div class="brandftr pull-left"><img src="../../images/GLT-BLU-logo.png" /><ul class="locations">
+          <li><strong>Global</strong></li><li><a href="../../contact.php#boston">GL-TURBO Boston</a></li><li><a href="../../contact.php#denmark">GL-TURBO Denmark</a></li><li><a href="../../contact.php#china">GL-TURBO Wuxi</a></li><li><a href="../../contact.php#europe">GL-TURBO Europe</a></li><li><a href="../../contact.php#india">GL-TURBO India</a></li></ul></div><p class="pull-right navz"><a href="//www.facebook.com/glturbo/" title="Facebook" target="_blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>&nbsp;<a href="//www.linkedin.com/company/2102861/" title="linkedIn" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a><br><a href="../../about_us.php?pg=news">News</a> | <a href="../../about_us.php?pg=events">Events</a> | <a href="../../about_us.php?pg=careers">Careers</a> | <a href="../../contact.php">Contact Us</a><br>&copy; 2017 - 2026 GL-TURBO, LLC.<br><a href="#">Back to Top</a>
+       </p>
+        
+      </footer>	</div>
+
+
+
+
+ 
+
+
+</body>
+</html>

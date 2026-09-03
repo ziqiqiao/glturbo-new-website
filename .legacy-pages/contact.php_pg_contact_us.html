@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>GL-TURBO - Contact GL-TURBO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <meta name="description" content="Gl Turbo - Contact GL-TURBO">
+ <meta name="author" content="GL-TURBO">
+ <meta name="keywords" content="GL-TURBO,GL,TURBO,Wuxi,Jiangsu,Single-Stage,Centrifugal,Compressor,Blower,IGV,VVD,HV,Clean Tech,Clean,Efficient,Environment,Water,Wastewater">
+	
+<!-- Le styles -->
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css" />
+<script type="text/javascript" src="ScriptLibrary/jquery-latest.pack.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+
+<link href="css/override.css" rel="stylesheet" type="text/css" />
+
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
+    <![endif]-->
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/GL-favicon_144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/GL-favicon_114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/GL-favicon_72.png">
+<link rel="apple-touch-icon-precomposed" href="images/GL-favicon_57.png">
+<link rel="shortcut icon" href="images/GL-favicon_32.png">
+
+<link rel="stylesheet" type="text/css" href="fontawesome/css/font-awesome.min.css" />
+<link rel="Stylesheet" type="text/css" href="css/carousel.css" />
+<script src='//www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#submit_btn").click(function() { 
+       
+	    var proceed = true;
+        //simple validation at client's end
+        //loop through each field and we simply change border color to red for invalid fields		
+		$("#contact_form input[required=true], #contact_form textarea[required=true]").each(function(){
+			$(this).css('border-color',''); 
+			if(!$.trim($(this).val())){ //if this field is empty 
+				$(this).css('border-color','red'); //change border color to red   
+				proceed = false; //set do not proceed flag
+			}
+			//check invalid email
+			var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; 
+			if($(this).attr("type")=="email" && !email_reg.test($.trim($(this).val()))){
+				$(this).css('border-color','red'); //change border color to red   
+				proceed = false; //set do not proceed flag				
+			}	
+		});
+		
+		if($('[name="g-recaptcha-response"]').val() == ''){
+		    	output = '<div class="error">reCaptcha is required!</div>';
+				$("#contact_form #contact_results").hide().html(output).slideDown();
+				proceed = false;
+		}
+       
+        if(proceed) //everything looks good! proceed...
+        {
+           //data to be sent to server         
+            var m_data = new FormData();
+			m_data.append( 'user_company',$('input[name=company]').val());    
+            m_data.append( 'user_name', $('input[name=name]').val());
+            m_data.append( 'user_email', $('input[name=email]').val());
+            m_data.append( 'country_code', $('input[name=phone1]').val());
+            m_data.append( 'phone_number', $('input[name=phone2]').val());
+            m_data.append( 'subject', $('select[name=subject]').val());
+			m_data.append( 'msg', $('textarea[name=message]').val());
+			m_data.append( 'file_attach', $('input[name=file_attach]')[0].files[0]);
+			m_data.append( 'MAX_FILE_SIZE', 20971520);
+			 
+            //instead of $.post() we are using $.ajax()
+            //that's because $.ajax() has more options and flexibly.
+  			$.ajax({
+              url: '_clssets/contact_infc.php',
+              data: m_data,
+              processData: false,
+              contentType: false,
+              type: 'POST',
+              dataType:'json',
+              success: function(response){
+                 //load json data from server and output message     
+ 				if(response.type == 'error'){ //load json data from server and output message     
+					output = '<div class="error">'+response.text+'</div>';
+				}else{
+				    output = '<div class="success">'+response.text+'</div>';
+				}
+				$("#contact_form #contact_results").hide().html(output).slideDown();
+              }
+            });
+			
+
+        }
+    });
+    
+    //reset previously set border colors and hide all message on .keyup()
+    $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() { 
+        $(this).css('border-color',''); 
+        $("#result").slideUp();
+    });
+});
+</script>
+</head>
+
+  <body>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-103657524-1', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['gl-turbo.com'] );
+  ga('send', 'pageview');
+ 
+</script>
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+		<div class="navbar navbar-default navbar-fixed-top">
+          <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+       <a class="brand" href="index.php"><img src="images/GLTURBO-logoBlue.png" width="230" alt=""/></a>
+            <div class="nav-collapse collapse">
+              <ul class="nav"><li><a href="index.php"><!--Home--><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li><li class='dropdown'><a href='#about_us' class='dropdown-toggle' data-toggle='dropdown'>About Us<strong class='caret'></strong></a><ul class="dropdown-menu"><li><a href='about_us.php?pg=company'>Company</a></li><li><a href='about_us.php?pg=why_gl_turbo'>Why GL-TURBO</a></li><li><a href='about_us.php?pg=news'>News</a></li><li><a href='about_us.php?pg=events'>Events</a></li><li><a href='about_us.php?pg=careers'>Careers</a></li>  </ul></li><li class='dropdown'><a href='#products' class='dropdown-toggle' data-toggle='dropdown'>Products<strong class='caret'></strong></a><ul class="dropdown-menu"><li><a href='products.php?pg=gl_gt'>GL - Geared Turbo</a></li><li><a href='products.php?pg=ls_mst'>LS - Multistage Turbo</a></li><li><a href='products.php?pg=contr_sys'>CS - Control Systems</a></li><li><a href='products.php?pg=pack_systems'>PS - Packaged Systems</a></li><li><a href='products.php?pg=service_prod'>Customer Service</a></li>  </ul></li><li class='dropdown'><a href='#applications' class='dropdown-toggle' data-toggle='dropdown'>Applications<strong class='caret'></strong></a><ul class="dropdown-menu"><li><a href='applications.php?pg=wnw'>Water & Wastewater</a></li><li><a href='applications.php?pg=vac_sys'>Vacuum Systems</a></li><li><a href='applications.php?pg=petro_chemical'>Petro-Chemical</a></li><li><a href='applications.php?pg=power'>Utility Power</a></li><li><a href='applications.php?pg=mining'>Mining</a></li><li><a href='applications.php?pg=environmental'>Environmental</a></li><li><a href='applications.php?pg=industrial'>Industrial</a></li>  </ul></li><li class='dropdown'><a href='#resources' class='dropdown-toggle' data-toggle='dropdown'>Resources<strong class='caret'></strong></a><ul class="dropdown-menu"><li><a href='resources_and_downloads.php?pg=prod_data_sheets'>Product Data Sheets</a></li>  </ul></li><li class='dropdown'><a href='#contact_us' class='dropdown-toggle' data-toggle='dropdown'>Contact Us<strong class='caret'></strong></a><ul class="dropdown-menu"><li><a href='contact.php?pg=contact_us'>Contact Us</a></li><li><a href='map.php?pg=map'>Global Reps</a></li>  </ul></li></ul>
+				<div class="dsearch pull-right"><a href="http://www.glturbo.com.cn/chinese/default.asp" target="_blank">Chinese</a> <!-- >| <a href="#search"><i class="fa fa-search"></i></a --></div> 
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->  
+      
+      <div class="mainphoto" id="contact">
+      	<div class="row-fluid">
+			<div class="span8">
+		<div class="form-style" id="contact_form">
+    <div class="form-style-heading"><h2>GL-TURBO Online Request</h2></div>
+  <div>
+	  <p>Please fill out the following information and we will process your request as soon as possible. <br>Or call us at <a href="tel:+1-617-204-3474">+1 (617) 204-3474</a>.</p> 
+	  <p class="ccmnt bcentr">(* required fields)</p></div>
+    <div><p><div id="contact_results"></div></p></div>
+    <div id="contact_body">
+        <label><span>Company <span class="required">*</span></span>
+            <input type="text" name="company" id="company" required="true" class="input-field"/>
+        </label><br>
+        <label><span>Name <span class="required">*</span></span>
+            <input type="text" name="name" id="name" required="true" class="input-field"/>
+        </label><br>
+        <label><span>Email <span class="required">*</span></span>
+            <input type="email" name="email" required="true" class="input-field"/>
+        </label><br>
+        <label><span>Phone <span class="required">*</span></span>
+            <input type="text" name="phone1" maxlength="3" placeholder="+1"  required="true" class="tel-number-field"/>&mdash;<input type="text" name="phone2" maxlength="15"  required="true" class="tel-number-field long" />
+        </label><br>
+        <label><span>Attachment</span>
+            <input type="file" name="file_attach" class="input-field" />
+        </label><br>
+            <label for="subject"><span>Regarding</span>
+            <select name="subject" class="select-field">
+            <option value="General Question">General Question</option>
+            <option value="Advertise">Products</option>
+            <option value="Partnership">Service</option>
+            </select>
+        </label><br>
+        <label for="message"><span>Message <span class="required">*</span></span></label>
+            <textarea name="message" id="message" class="textarea-field" required></textarea>
+            
+      <label for="captcha"><span>&nbsp;</span></label><div id="captcha"><div class="g-recaptcha" data-sitekey="6LeiHyEUAAAAALQHbGOj-O4NUHGT8_x09jhPomq-"></div></div>
+      
+      <label for="submit_btn"><span>&nbsp;</span></label><input type="submit" id="submit_btn" value="Submit" />
+        
+    </div>
+</div> 
+			</div>
+			<div class="span3 locationc">
+			
+				<h2>GL-TURBO Locations</h2>
+				
+				<hr /><h4><a name="boston" class="nodeco">GL-TURBO Boston</a></h4><p><strong>Boston, Massachusetts USA</strong><br>221 Boston Post East<br>Suite 410<br>Marlborough, MA 01752</p><p><strong>Tel:</strong> +1 (617) 204-3474<br><strong>Fax:</strong> +1 (617) 204-3473<br><strong>Email:</strong> <a href="mailto:corporate@glturbo.com">corporate@glturbo.com</a></p><a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.713772901186!2d-71.5241371841515!3d42.3486254438155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e38b83cad1f8f9%3A0x34b688e2bed5fc41!2s221+Boston+Post+Rd+E+%23420%2C+Marlborough%2C+MA+01752!5e0!3m2!1sen!2sus!4v1498094206913" data-title="GL-TURBO Boston" class="hpsetmap" data-original-title="GL-TURBO Boston">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a><hr /><h4><a name="denmark" class="nodeco">GL-TURBO Denmark</a></h4><p><strong>Copenhagen, Denmark</strong><br>Bygmarken 21B<br>Farum,  3520</p><p><strong>Tel:</strong> +45 4062 9840<br><strong>Email:</strong> <a href="mailto:dk_info@glturbo.com">dk_info@glturbo.com</a></p><a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2238.716269154694!2d12.49272821616826!3d55.867588990600176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465248e5a6f05ba9%3A0xd12676db8d58a707!2sDr+Neergaards+Vej+5A%2C+2970+H%C3%B8rsholm%2C+Denmark!5e0!3m2!1sen!2sus!4v1498083051256" data-title="GL-TURBO Denmark" class="hpsetmap" data-original-title="GL-TURBO Denmark">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a><hr /><h4><a name="china" class="nodeco">GL-TURBO Wuxi</a></h4><p><strong>Wuxi, China</strong><br>38 Lianqian Road<br>Xishan Economic Development Zone<br>Wuxi, Jiangsu 214106</p><p><strong>Tel:</strong> +86 (510) 8585-5188<br><strong>Fax:</strong> +86 (510) 8585-5178<br><strong>Email:</strong> <a href="mailto:info@glturbo.com.cn">info@glturbo.com.cn</a></p><a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.2080620847587!2d120.49503351565657!3d31.60075815032888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b3950930ec82c9%3A0x55d48e2ab1f43468!2sLian+Qian+Lu%2C+Xishan+Qu%2C+Wuxi+Shi%2C+Jiangsu+Sheng%2C+China!5e0!3m2!1sen!2sus!4v1498084443952" data-title="GL-TURBO Wuxi" class="hpsetmap" data-original-title="GL-TURBO Wuxi">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a><hr /><h4><a name="europe" class="nodeco">GL-TURBO Europe</a></h4><p><strong>Leipzig, Germany </strong><br>Czermaks Garten 5<br>Leipzig,  04103</p><p><strong>Tel:</strong> +49 (341) 2489-6595<br><strong>Email:</strong> <a href="mailto:de_info@glturbo.com">de_info@glturbo.com</a></p><hr /><h4><a name="india" class="nodeco">GL-TURBO India</a></h4><p><strong>Bangalore, India</strong><br>#20, 4th floor, Vishnu Towers<br>Bangalore,  560078</p><p><strong>Tel:</strong> +91 (9986) 649-649<br><strong>Email:</strong> <a href="mailto:in_info@glturbo.com">in_info@glturbo.com</a></p>				
+				<!-- hr />
+				<h4><a name="boston" class="nodeco">GL-TURBO, LLC</a></h4>
+				<p><strong>Boston, Massachusetts USA</strong><br>
+					221 Boston Post East, Suite 420<br>
+					Marlborough, MA 01752</p>
+				<p><strong>Tel:</strong> <a href="tel:+1 617-204-3474">+1 617-204-3474</a><br>
+					<strong>Fax:</strong>+1 617-204-3473<br>
+					<strong>Email:</strong> <a href="mailto:corporate@glturbo.com">corporate@glturbo.com</a></p>
+
+				<a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.713772901186!2d-71.5241371841515!3d42.3486254438155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e38b83cad1f8f9%3A0x34b688e2bed5fc41!2s221+Boston+Post+Rd+E+%23420%2C+Marlborough%2C+MA+01752!5e0!3m2!1sen!2sus!4v1498094206913" data-title="GL-TURBO Boston, Massachusetts USA" class="hpsetmap" data-original-title="GL-TURBO Boston, Massachusetts USA">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+				<hr />
+
+				<h4><a name="houston" class="nodeco">GL-TURBO HOUSTON</a></h4>
+
+				<p><strong>Houston, Texas USA</strong><br>
+				<strong>Mail:</strong><br> 
+					PO Box 1526 <br> 
+					Friendswood<br>
+					Texas 77549 USA</p>
+
+				<p><strong>Shipping:</strong><br> 
+					1100 Louisiana Street<br>
+					City of South Houston<br> 
+					Texas 77587 USA</p>
+
+				<p><strong>Office:</strong>: <a href="tel:+1 832 532 3112">+1 832 532 3112</a><br>
+					<strong>Fax:</strong> +1 832 532 3115<br>
+					<strong>Email:</strong> <a href="mailto:info@glturbo.com">info@glturbo.com</a></p>
+				<a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.899404305558!2d-95.2509736843714!3d29.664693343365453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864097c04a2fa3e3%3A0x31f843a1d2d3f85e!2s1100+Louisiana+St%2C+South+Houston%2C+TX+77587!5e0!3m2!1sen!2sus!4v1498082951446" data-title="GL-TURBO Houston, Texas USA" class="hpsetmap" data-original-title="GL-TURBO Houston, Texas USA">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+				<hr />
+
+				<h4><a name="denmark" class="nodeco">GL-TURBO INTERNATIONAL</a></h4>
+
+				<p><strong>Copenhagen, Denmark</strong><br>
+					Dr. Neergaards Vej 5A<br>
+					2970, Hoersholm<br></p>
+				<p><strong>Tel:</strong> <a href="tel:+45 4027 7298">+45 4027 7298</a><br> 
+					<strong>Email:</strong> <a href="mail:info@glturbo.com">info@glturbo.com</a></p>
+				
+				<a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2238.716269154694!2d12.49272821616826!3d55.867588990600176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465248e5a6f05ba9%3A0xd12676db8d58a707!2sDr+Neergaards+Vej+5A%2C+2970+H%C3%B8rsholm%2C+Denmark!5e0!3m2!1sen!2sus!4v1498083051256" data-title="GL-TURBO Copenhagen, Denmark" class="hpsetmap" data-original-title="GL-TURBO Copenhagen, Denmark">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+				
+				<hr />
+
+				<h4><a name="china" class="nodeco">GL-TURBO JIANGSU</a></h4>
+
+				<p><strong>Wuxi, China</strong><br> 
+					38 Lianqian Road<br>
+					Xishan Economic Development Zone,<br>
+					Wuxi, Jiangsu Province<br>
+					Zip Code: 214106</p>
+				<p><strong>Tel:</strong> <a href="tel:+86 (510) 8585-5188">+86 (510) 8585-5188</a><br> 
+					<strong>Fax:</strong> +86 (510) 8585-5178<br>
+					<strong>Email:</strong> <a href="mail:info@glturbo.com.cn">info@glturbo.com.cn</a></p>
+				
+			    <a href="#" data-set="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.2080620847587!2d120.49503351565657!3d31.60075815032888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b3950930ec82c9%3A0x55d48e2ab1f43468!2sLian+Qian+Lu%2C+Xishan+Qu%2C+Wuxi+Shi%2C+Jiangsu+Sheng%2C+China!5e0!3m2!1sen!2sus!4v1498084443952" data-title="GL-TURBO Wuxi, China" class="hpsetmap" data-original-title="GL-TURBO Wuxi, China">View Map <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a -->
+		  </div>
+	  </div>
+</div>
+      <!-- START THE FEATURETTES -->
+
+      <!-- hr class="featurette-divider" -->
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      
+      <footer>
+		  <div class="brandftr pull-left"><img src="images/GLT-BLU-logo.png" /><ul class="locations">
+          <li><strong>Global</strong></li><li><a href="#boston">GL-TURBO Boston</a></li><li><a href="#denmark">GL-TURBO Denmark</a></li><li><a href="#china">GL-TURBO Wuxi</a></li><li><a href="#europe">GL-TURBO Europe</a></li><li><a href="#india">GL-TURBO India</a></li></ul></div><p class="pull-right navz"><a href="//www.linkedin.com/company/2102861/" title="linkedIn" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a><br><a href="about_us.php?pg=news">News</a> | <a href="about_us.php?pg=events">Events</a> | <a href="about_us.php?pg=careers">Careers</a> | <a href="contact.php">Contact Us</a><br>&copy; 2017 - 2026 GL-TURBO, LLC.<br><a href="#">Back to Top</a>
+       </p>
+        
+      </footer>
+
+  </div><!-- /.container -->
+  
+<!-- Modal container for PDF -->
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModalMAP">
+				    <div class="modal-dialog modal-lg">
+				      <div class="modal-content">
+ 				        <div class="modal-header">
+ 				          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+ 				          <h4 class="modal-title" id="myModalLabelMAP">Title</h4>
+ 				        </div>
+						<div class="modal-body">
+				        	<iframe src="images/gears.gif" id="MAPpre" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>
+				        <div class="modal-footer"> 	
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+<!-- End Modal container for PDF -->
+ 
+ 	<script>
+	$(document).ready(function(){
+
+			$('#myModalMAP').modal('hide');
+			
+			$(".hpsetmap").on("click", function() {
+			
+			   $('#MAPpre').attr('src', $(this).attr('data-set'));
+			   $('#myModalLabelMAP').text($(this).attr('data-title'));
+			   $('#myModalMAP').modal('show');
+   
+			});
+			
+
+   
+	});
+
+
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  //if it is a Mobile Device
+  //alert("Mobile Detected");
+	
+		 jQuery(document).ready(function($) {
+    	$("li.dropdown a").click(function(e){
+			$(this).next('ul.dropdown-menu').css("display", "block");
+			//$(this).prev('ul.dropdown-menu').css("display", "none");
+			e.stopPropagation();
+        });
+	 });
+ 
+	}	
+</script>
+ 
+  <script src="bootstrap/js/holder/holder.js"></script>
+</body>
+</html>
