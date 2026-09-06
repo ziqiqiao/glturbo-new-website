@@ -134,12 +134,16 @@ li + li { margin-top: 6px; }
 .value img, .resource img { width: 100%; aspect-ratio: 1.45; margin-bottom: 20px; object-fit: cover; }
 .value p, .resource p, .location p { color: var(--muted); }
 
-.data-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.data-tables { display: grid; gap: 32px; }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; background: #fff; }
 caption { padding: 16px; color: #fff; font-size: 18px; font-weight: 800; text-align: left; background: var(--blue-dark); }
 th, td { padding: 12px 14px; border: 1px solid var(--line); text-align: left; }
 th { background: var(--soft); }
+.download-table { min-width: 760px; }
+.download-table tbody th { color: var(--blue-dark); white-space: nowrap; }
+.download-table a { display: inline-block; color: var(--blue); font-weight: 800; white-space: nowrap; text-decoration: underline; text-decoration-color: rgba(0, 94, 165, .28); text-underline-offset: 3px; }
+.download-table a:hover, .download-table a:focus-visible { color: var(--blue-dark); text-decoration-color: currentColor; }
 
 .media-library { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 36px; }
 .media-library figure { margin: 0; min-width: 0; border: 1px solid var(--line); background: #fff; }

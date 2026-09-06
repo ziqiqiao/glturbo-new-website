@@ -7,6 +7,25 @@ Inventory date: 2026-09-03
 
 The first static iteration is a six-page site: `index.html`, `about.html`, `products.html`, `applications.html`, `resources.html`, and `contact.html`. Primary navigation opens these pages instead of scrolling through one long homepage.
 
+About Us now uses separate HTML pages for each topic. All About Us navigation links load the corresponding page, with the current topic marked in the navigation, breadcrumb, and page heading:
+
+- Company: `about.html` (the default About Us entry)
+- Why GLTURBO: `about-why-glturbo.html`
+- Research & Development: `about-research-development.html`
+- Testing & Certifications: `about-testing-certifications.html`
+- History: `about-history.html`
+- News: `about-news.html`
+- Events: `about-events.html`
+- Careers: `about-careers.html`
+
+Each page includes only its own topic content. About Us uses shared `about.css` styles; its topic navigation does not use same-page fragment links.
+
+Products, Applications, and Resources also use separate topic pages, styled by `category.css`. Their category navigation, page headings, breadcrumbs, and active links identify the current topic. Homepage product links and the About Us service link point directly to these pages.
+
+- Products: `products.html` (GL Geared Turbo), `products-multistage-turbo.html`, `products-control-systems.html`, `products-packaged-systems.html`, `products-customer-service.html`.
+- Applications: `applications.html` (Water & Wastewater), `applications-vacuum.html`, `applications-petro-chemical.html`, `applications-utility-power.html`, `applications-mining.html`, `applications-environmental.html`, `applications-industrial.html`.
+- Resources: `resources.html` (Product Data Sheets), `resources-media-library.html`. The existing performance curve, PDF, and CAD download links remain on the Product Data Sheets page.
+
 The user-supplied `GL-TURBO蓝字无底.png` is copied to `assets/brand/glturbo-logo.png` and is the only logo displayed in the new site header and footer.
 
 The legacy site crawl downloaded 111 image and image-support files into `assets/legacy/` (approximately 21 MB), including assets referenced from the old CSS. All content imagery is used on a relevant page or in the Resources media library. Old logo files, favicon variants, carousel controls, and layout spacer images remain archived but are intentionally not displayed. `tools/download-legacy-assets.sh` reproduces the download from the audited page list.
