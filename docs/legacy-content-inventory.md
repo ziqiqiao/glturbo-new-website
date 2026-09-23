@@ -3,6 +3,8 @@
 Source site: https://www.glturbo.com/
 Inventory date: 2026-09-03
 
+> September 2026 update: the supplied product brochures now drive current product and company content. See [Brochure content update](brochure-content-update.md) for the current page map, source precedence, specification changes, and historical reference handling. The inventory below describes the earlier migration.
+
 ## Migration Status
 
 The first static iteration is a six-page site: `index.html`, `about.html`, `products.html`, `applications.html`, `resources.html`, and `contact.html`. Primary navigation opens these pages instead of scrolling through one long homepage.

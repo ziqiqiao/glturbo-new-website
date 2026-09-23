@@ -89,6 +89,31 @@ li + li { margin-top: 6px; }
 .feature-body p { color: var(--muted); }
 .feature-code { color: var(--blue); font-size: 13px; font-weight: 800; text-transform: uppercase; }
 
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.current-products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+.current-products .feature-card { display: flex; flex-direction: column; border: 0; }
+.current-products .feature-card img { height: 245px; padding: 24px; object-fit: contain; background: #fff; }
+.current-products .feature-body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
+.current-products .feature-body h3 { margin: 8px 0 14px; }
+.current-products .feature-body .text-link { margin-top: auto; }
+.carousel-caption h2 { max-width: 680px; font-size: clamp(38px, 5vw, 62px); }
+.carousel-slide.product-art { background: #fff; }
+.carousel-slide.product-art > img { padding: 40px 4% 40px 43%; object-fit: contain; }
+.carousel-slide.product-art::after { background: linear-gradient(90deg, #071827 0%, rgba(7, 24, 39, .94) 24%, rgba(7, 24, 39, .65) 43%, rgba(7, 24, 39, .04) 70%); }
+.reference-note { margin-bottom: 40px; padding: 26px; border-left: 4px solid var(--cyan); background: var(--soft); }
+.reference-note h2 { font-size: 25px; margin-bottom: 14px; }
+
+@media (max-width: 980px) {
+  .current-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .carousel-slide.product-art > img { padding-left: 35%; }
+}
+@media (max-width: 680px) {
+  .current-products { grid-template-columns: 1fr; }
+  .carousel-caption h2 { font-size: 36px; }
+  .carousel-slide.product-art > img { padding: 20px 25px 200px; }
+  .carousel-slide.product-art::after { background: linear-gradient(0deg, #071827 0%, rgba(7, 24, 39, .94) 26%, rgba(7, 24, 39, .08) 78%); }
+}
+
 .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: clamp(36px, 7vw, 90px); }
 .split-copy > p:not(.eyebrow) { color: var(--muted); font-size: 18px; }
 .split-media img { width: 100%; max-height: 520px; object-fit: cover; }
